@@ -377,12 +377,12 @@ static VALUE grpc_rb_prefork(VALUE self) {
              "GRPC.prefork already called without a matching "
              "GRPC.postfork_{parent,child}");
   }
-  if (!grpc_ruby_initial_thread()) {
-    rb_raise(rb_eRuntimeError,
-             "GRPC.prefork and fork need to be called from the same thread "
-             "that GRPC was initialized on (GRPC lazy-initializes when when "
-             "the first GRPC object is created");
-  }
+  // if (!grpc_ruby_initial_thread()) {
+  //   rb_raise(rb_eRuntimeError,
+  //            "GRPC.prefork and fork need to be called from the same thread "
+  //            "that GRPC was initialized on (GRPC lazy-initializes when when "
+  //            "the first GRPC object is created");
+  // }
   if (g_grpc_rb_num_fork_unsafe_threads > 0) {
     rb_raise(
         rb_eRuntimeError,
